@@ -1,0 +1,40 @@
+﻿@model FruitStore.Areas.Jirafa.Models.AdminProductosViewModel;
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<h1>Administrar Productos</h1>
+
+<section class="lista">
+    <form method="post" action="~/Jirafa/Productos/Index" >
+        <select asp-items="@(new SelectList(Model.Categorias,"Id","Nombre"))" asp-for="IdCategoriaSeleccioneada" onchange="this.form.submit()">
+            
+            <option>--- Mostrar todos los productos---</option>
+            
+        </select>
+    </form>
+    <ul>
+        
+        <li><a href="~/Jirafa/Productos/Agregar"><img src="~/images/add.png" /> Nuevo producto</a></li>
+
+        @foreach (var item in Model.Productos)
+        {
+            <li>
+                @if(Model.IdCategoriaSeleccioneada == 0)
+                {
+                    @(item.Nombre +"-"+ item.Categoria)
+                }
+                else
+                {
+                    @item.Nombre
+                }
+                
+                <a href="~/Jirafa/Productos/Editar/@(item.Id)" class="btnEditar"></a>
+                <a href="~/Jirafa/Productos/Eliminar/@(item.Id)" class="btnBorrar"></a>
+            </li>
+        }
+        
+    </ul>
+
+</section>

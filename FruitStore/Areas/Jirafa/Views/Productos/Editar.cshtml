@@ -1,0 +1,58 @@
+﻿@model FruitStore.Areas.Jirafa.Models.AdminAgregarProductosViewModel;
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<form action="~/Jirafa/Productos/Editar" method="post" enctype="multipart/form-data">
+    <div>
+        <h1>Editar Producto</h1>
+        <input type="hidden" asp-for="Productos.Id"/>
+        <label>Nombre:</label>
+        <input type="text" id="txtNombre" asp-for="Productos.Nombre" />
+
+
+        <label>Categoría:</label>
+        <select id="cmbCategoria" asp-for="Productos.IdCategoria" asp-items="@(new SelectList(Model.Categorias,"Id","Nombre"))">
+            <option>-- Seleccionar categoria --</option>
+        </select>
+
+        <label>Unidad de Medida:</label>
+        <input type="text" id="txtUnidadMedida" asp-for="Productos.UnidadMedida" />
+
+        <label>Precio:</label>
+        <input type="number" id="txtPrecio" asp-for="Productos.Precio" />
+
+        <label>Descripción</label>
+        <textarea rows="2" cols="20" asp-for="Productos.Descripcion"></textarea>
+
+        <label>Imagen:</label>
+        <input type="file" id="fileUpload1" accept="image/jpeg" asp-for="Archivo" />
+
+        <img id="imagePreview" src="~/img_frutas/@(Model.Productos.Id).jpg" />
+
+
+        <div class="botones">
+            <p id="error">@Html.ValidationSummary(true)</p>
+            <input type="submit" value="Guardar" id="btnAgregar" />
+            <a href="~/Jirafa/Productos">
+                <input type="button" value="Cancelar" id="btnCancelar" />
+            </a>
+        </div>
+    </div>
+</form>
+<script>
+
+    function mostrarImagen(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                document.getElementById('imagePreview').src = e.target.result;
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    document.getElementById('fileUpload1').addEventListener('change', function () {
+        mostrarImagen(this);
+    });
+</script>

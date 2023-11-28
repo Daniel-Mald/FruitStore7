@@ -1,0 +1,29 @@
+﻿@model FruitStore.Models.ViewModels.ProductosViewModel;
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    Layout = "_Layout";
+}
+
+<h1 id="nombreCategoria">@Model.Categoria</h1>
+
+
+<div class="productos">
+    
+    @foreach (var item in Model.Productos)
+    {
+        <a href="~/Home/Ver/@(item.Nombre.Replace(" ", "-"))">
+            <div>
+                <img src="~/img_frutas/@(item.Id).jpg?f=@(item.FechaModificacion)"  >
+            </div>
+            <h2>@(item.Nombre)</h2>
+            <h3>$@(item.Precio.ToString("c"))</h3>
+        </a>
+    }
+
+    
+    
+</div>
+
+
+
