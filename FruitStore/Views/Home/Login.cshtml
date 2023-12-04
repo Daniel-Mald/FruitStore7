@@ -1,0 +1,36 @@
+﻿@model FruitStore.Models.ViewModels.LoginViewModel;
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>FruitStore - La mejor fruteria de la Web</title>
+    <link href="~/styles.css" rel="stylesheet" />
+</head>
+<body>
+    <header></header>
+    
+    <main>
+
+        <form method="post" action="~/Home/Login">
+            <div>
+                <h1>Iniciar sesion</h1>
+
+                <label>Correo :</label>
+                <input type="email"  required="required" asp-for="Correo"/>
+                <label>Contrasena:</label>
+                <input type="password" required="required" asp-for="Contraseña" />
+
+                <div class="botones">
+                    <p id="error">@Html.ValidationSummary(true)</p>
+                    <input type="submit"  id="btnAgregar"  value="mahpasefhopfashpuweafhoafew"/>
+                    
+                </div>
+            </div>
+        </form>
+
+    </main>
+</body>
+</html>

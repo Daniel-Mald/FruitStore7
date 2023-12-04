@@ -10,7 +10,14 @@
     <header></header>
     <nav>
         <a href="~/Jirafa">Principal</a>
-        <a href="~/Jirafa/Categorias">Administrar Categorias</a>
+
+        
+        @{
+            if (User.IsInRole("Administrador")){
+                <a href="~/Jirafa/Categorias">Administrar Categorias</a>
+            }
+        }
+        
         <a href="~/Jirafa/Productos">Administrar Productos</a>
         
     </nav>

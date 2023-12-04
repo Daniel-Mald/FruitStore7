@@ -1,10 +1,12 @@
 ﻿using FruitStore.Areas.Jirafa.Models;
 using FruitStore.Models.Entities;
 using FruitStore.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FruitStore.Areas.Jirafa.Controllers
 {
+    [Authorize]
     [Area("Jirafa")]
     public class ProductosController : Controller
     {
@@ -15,8 +17,10 @@ namespace FruitStore.Areas.Jirafa.Controllers
             pR = productosRepository;
             cR = categoriasRepository;
         }
+        
         [HttpGet]
         [HttpPost]
+        [Authorize(Roles = "Supervisor, Administrador")]
         public IActionResult Index(AdminProductosViewModel vm)
         {
             vm.Categorias = cR.GetAll().OrderBy(x => x.Nombre).Select(x => new CategoriaModel
@@ -45,6 +49,7 @@ namespace FruitStore.Areas.Jirafa.Controllers
             }
             return View(vm);
         }
+        [Authorize(Roles = "Administrador")]
         public IActionResult Agregar()
         {
             var data = new AdminAgregarProductosViewModel
@@ -58,6 +63,7 @@ namespace FruitStore.Areas.Jirafa.Controllers
             return View(data);
         }
         [HttpPost]
+        [Authorize(Roles = "Administrador")]
         public IActionResult Agregar(AdminAgregarProductosViewModel vm)
         {
             //validar

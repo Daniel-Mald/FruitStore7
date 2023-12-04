@@ -1,10 +1,12 @@
 ﻿using FruitStore.Areas.Jirafa.Models;
 using FruitStore.Models.Entities;
 using FruitStore.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FruitStore.Areas.Jirafa.Controllers
 {
+    [Authorize(Roles = "Administrador")]
     [Area("Jirafa")]
     public class CategoriasController : Controller
     {

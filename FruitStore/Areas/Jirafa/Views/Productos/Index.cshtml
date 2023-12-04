@@ -15,8 +15,13 @@
         </select>
     </form>
     <ul>
-        
-        <li><a href="~/Jirafa/Productos/Agregar"><img src="~/images/add.png" /> Nuevo producto</a></li>
+        <li>
+        @if (User.IsInRole("Administrador"))
+        {
+            
+            <a href="~/Jirafa/Productos/Agregar"><img src="~/images/add.png" /> Nuevo producto</a>
+        }
+        </li>
 
         @foreach (var item in Model.Productos)
         {
@@ -31,7 +36,12 @@
                 }
                 
                 <a href="~/Jirafa/Productos/Editar/@(item.Id)" class="btnEditar"></a>
-                <a href="~/Jirafa/Productos/Eliminar/@(item.Id)" class="btnBorrar"></a>
+
+                @if (User.IsInRole("Administrador"))
+                {
+                    <a href="~/Jirafa/Productos/Eliminar/@(item.Id)" class="btnBorrar"></a>
+                }
+                
             </li>
         }
         
