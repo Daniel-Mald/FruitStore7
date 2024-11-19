@@ -25,7 +25,7 @@ namespace FruitStore.Repositories
                 .OrderBy(x => x.Nombre);
         }
         public Productos? GetByNombre(string nombre)
-        {
+        {   
             return Context.Productos
                 .Include(x=>x.IdCategoriaNavigation)
                 .FirstOrDefault(x=>x.Nombre == nombre);

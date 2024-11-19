@@ -40,7 +40,7 @@ namespace FruitStore.Controllers
                     Id = x.Id,
                     Nombre = x.Nombre ?? "",
                     Precio = x.Precio ?? 0m,
-                    FechaModificacion = new FileInfo($"wwwroot/img_grutas/{x.Id}.jpg").LastWriteTime.ToString("yyyyMMddhhmm")
+                    FechaModificacion = new FileInfo($"wwwroot/img_frutas/{x.Id}.jpg").LastWriteTime.ToString("yyyyMMddhhmm")
                 })
             };
 

@@ -10,6 +10,7 @@ builder.Services.AddTransient<Repository<Usuarios>>();
 builder.Services.AddTransient<ProductosRepository>();
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(x =>
 {
+    x.Cookie.HttpOnly = true;
     x.AccessDeniedPath = "/Home/Denied";
     x.LoginPath = "/Home/Login";
     x.LogoutPath = "/Home/Logout";

@@ -12,13 +12,20 @@
     
     @foreach (var item in Model.Productos)
     {
-        <a href="~/Home/Ver/@(item.Nombre.Replace(" ", "-"))">
-            <div>
-                <img src="~/img_frutas/@(item.Id).jpg?f=@(item.FechaModificacion)"  >
-            </div>
-            <h2>@(item.Nombre)</h2>
-            <h3>$@(item.Precio.ToString("c"))</h3>
-        </a>
+        <div style="display:flex;flex-direction:column;gap:0;">
+            <a href="~/Home/Ver/@(item.Nombre.Replace(" ", "-"))">
+                <div>
+                    <img src="~/img_frutas/@(item.Id).jpg?v=@(item.FechaModificacion)" />
+                </div>
+                <h2>@(item.Nombre)</h2>
+                <h3>@(item.Precio.ToString("c"))</h3>
+            </a>
+            <a href="~/Home/Carrito" style="padding:0;margin-bottom:10;">
+                &#128722;
+            </a>
+        </div>
+        
+        
     }
 
     

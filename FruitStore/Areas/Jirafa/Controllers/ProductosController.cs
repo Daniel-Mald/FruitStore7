@@ -17,7 +17,7 @@ namespace FruitStore.Areas.Jirafa.Controllers
             pR = productosRepository;
             cR = categoriasRepository;
         }
-        
+
         [HttpGet]
         [HttpPost]
         [Authorize(Roles = "Supervisor, Administrador")]
@@ -28,7 +28,7 @@ namespace FruitStore.Areas.Jirafa.Controllers
                 Id = x.Id,
                 Nombre = x.Nombre ?? ""
             });
-            if(vm.IdCategoriaSeleccioneada == 0)
+            if (vm.IdCategoriaSeleccioneada == 0)
             {
                 vm.Productos = pR.GetAll().Select(x => new ProductoModel
                 {
@@ -162,6 +162,7 @@ namespace FruitStore.Areas.Jirafa.Controllers
                 producto.Descripcion = vm.Productos.Descripcion;
                 producto.UnidadMedida = vm.Productos.UnidadMedida;
                 producto.IdCategoria = vm.Productos.IdCategoria;
+               
 
                 pR.Update(producto);
 
@@ -172,6 +173,7 @@ namespace FruitStore.Areas.Jirafa.Controllers
                     System.IO.FileStream fs = System.IO.File.Create($"wwwroot/img_frutas/{vm.Productos.Id}.jpg");
                     vm.Archivo.CopyTo(fs);
                     fs.Close();
+
                 }
                 return RedirectToAction("Index");   
             }
